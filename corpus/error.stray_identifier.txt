@@ -1,0 +1,23 @@
+=====================
+Stray identifier before macro call
+=====================
+
+macro_rules! impl_pred {}
+
+// TODO
+i
+impl_pred!(foo, bar);
+
+---
+
+(source_file
+ (macro_definition name:
+                   (identifier))
+ (line_comment)
+ (macro_invocation macro:
+                   (identifier)
+                   (ERROR
+                    (identifier))
+                   (token_tree
+                    (identifier)
+                    (identifier))))
